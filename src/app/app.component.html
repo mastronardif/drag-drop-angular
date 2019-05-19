@@ -1,0 +1,51 @@
+<div class="container">
+  <h1>{{title}}</h1>
+  <p>For more turorials and courses visit <a [href]="website" target="_blank"> samorgill.com</a></p>
+  <div cdkDrop>
+  <div class="box" cdkDrag>Drag me around!</div>
+</div>
+<div class="box" cdkDrag>Drag me around!</div>
+  <div class="list-container">
+
+    <div class="todo-container column-container">
+      <div class="list"
+           cdkDropList
+           #todoList="cdkDropList"
+           [cdkDropListData]="todos"
+           [cdkDropListConnectedTo]="[doneList]"
+           (cdkDropListDropped)="onDrop($event)">
+        <h2>Tech to learn</h2>
+        <mat-card *ngFor="let todo of todos" cdkDrag>
+          <mat-card-header>
+            <mat-card-title>{{todo.name}}</mat-card-title>
+            <mat-card-subtitle>{{todo.category}}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="done-container column-container">
+      <div class="list"
+           cdkDropList
+           #doneList="cdkDropList"
+           [cdkDropListData]="completed"
+           [cdkDropListConnectedTo]="todoList"
+           (cdkDropListDropped)="onDrop($event)">
+        <h2>Tech learned</h2>
+        <mat-card  class="example-card" *ngFor="let complete of completed" cdkDrag>
+          <mat-card-header>
+            <mat-card-title>{{complete.name}}</mat-card-title>
+            <mat-card-subtitle>{{complete.category}}</mat-card-subtitle>
+            <div style="border:solid">
+            {{fuck}}<br/>
+            <img width="50" height="50" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            </div>
+
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+</div>
+
